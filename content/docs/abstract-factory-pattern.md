@@ -38,6 +38,11 @@ Knowing about this kind of problem, a seasoned object-oriented programmer would 
 
 Before going deeper into how usually we approach this problem in object-oriented imperative way, let's specify some more details to simplify the meaning of animals' "movement":
 
+- Ecosystem where the animals live is represented as a 2-dimensional cartesian plane.
+- Animals move when their position (`x` and `y` coordinate) changes. 
+- Animals move in units of movement. Different animal move in different unit (that represent speed).
+- The unit of movement of each animal is influenced by the medium in which the animal moves.
+- The position of the disaster is constant.  
 
 ### Ecosystem With Animals: Object-oriented Imperative Approach
 
