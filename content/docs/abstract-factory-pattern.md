@@ -9,8 +9,8 @@ The abstract factory is one of the most widely used pattern, almost certain to b
 
 [insert illustration-1]
 
-
+In the above illustration, the factories produces a "bag" that can give us some milk.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg3NzUyMzg1NV19
+eyJoaXN0b3J5IjpbOTY3NjA1MDM0XX0=
 -->
