@@ -6,3 +6,8 @@ draft: true
 
 The abstract factory is one of the most widely used pattern, almost certain to be found in any large object-oriented projects. As the name suggests, it gives us a "factory" that lets us create a system of related objects in their abstract form. Here's an illustration on how it works:
 
+
+
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTQzNTQ0Njk0MF19
+-->
