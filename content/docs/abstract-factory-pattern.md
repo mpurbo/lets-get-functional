@@ -46,6 +46,67 @@ Before going deeper into how usually we approach this problem in object-oriented
 
 ### Ecosystem With Animals: Object-oriented Imperative Approach
 
+Knowing that there are 3 types of animals involved, and the most reasonable object-oriented approach would be to make a hierarcy of animal classes like such:
+
+[insert illustration 3]
+
+The three animal classes are conforming to a contract (for example: `Interface` in `Java`) such that:
+
+1. All animals have current position.
+2. All animals are able to run away from a certain position (useful when there is a disaster).
+3. All animals know when they are safe.
+
+Coded into a `Java` interface, it would look like this:
+
+```java
+/**
+ * Representing an animal in an ecosystem.
+ */
+public interface Animal {
+
+    /**
+     * Given a position, this animal is able to move themselves away from it.
+     *
+     * @param position Position to run away from.
+     */
+    void runAwayFrom(Position position);
+
+    /**
+     * Given a position, this animal is able to decide whether they are within a safe distance from it.
+     *
+     * @param position Position to evaluate.
+     * @return whether this animal is safe from the given position.
+     */
+    boolean isSafeFrom(Position position);
+
+    /**
+     * Getting the current position of this animal.
+     */
+    Position getPosition();
+
+    /**
+     * Setting the position of this animal.
+     *
+     * @param position
+     */
+    void setPosition(Position position);
+}
+```
+
+### Ecosystem With Animals: Functional Approach
+
+### Ecosystem With Animals: Reviewing Different Approaches
+
+According to the GoF, the benefits and liabilities of using the Abstract Factory pattern are:
+1. Benefit: it isolates concrete classes.
+2. Benefit: it makes exchanging product families easy.
+3. Benefit: it promotes consistency among products.
+4. Liability: supporting new kinds of products is difficult.
+
+Let's see if these benefits and liability is applicable to functional approach as well.
+
+### Ecosystem With Animals: Object-oriented - Functional Hybrid Approach
+
 
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbOTY3NjA1MDM0XX0=
