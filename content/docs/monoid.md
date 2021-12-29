@@ -1,5 +1,5 @@
 ---
-title: "Semigroups and Monoids"
+title: "Monoid"
 date: 2021-12-25T00:24:43+09:00
 draft: true
 weight: 40
@@ -55,7 +55,7 @@ public static <T> T reduce(T identity, BinaryOperator<T> operation, Collection<T
     return reduced;
 }
 ```
-This generic function is basically showing what we can do with a Monoid structure. We can operate it with another Monoid of the same type, to produce another Monoid of the same type. `Integer` _addition_ is a Monoid. `String` and `List` are some examples of another Monoid. 
+This generic function is basically showing what we can do with a Monoid structure. We can operate it with another Monoid of the same type, to produce another Monoid of the same type. `Integer` _addition_ is a Monoid. `String` and `List` are some examples of another Monoidal structure. 
 
 As a Monoid, the imperative code for summing all `Integer` numbers can be expressed as follows:
 
@@ -82,6 +82,53 @@ static String functionalStringConcat(List<String> words) {
 As can be seen here, the boilerplate code is gone, and what left is the actual logic that declares what we want to do. This is the essence of functional programming: we don't specify _how_ to do things (loop as in imperative code), but we specify only _what_ we want to do (summing, building sentence). 
 
 ### Formal Monoid Definition
+
+Monoid is defined as a structure that has:
+1. An associative binary operation.
+2. An identity.
+
+This definition can be expressed as a Java `interface` as follows:
+
+```java
+public interface Monoid<T> {
+    T operate(T a, T b);
+    T identity();
+}
+```
+
+**Binary operation** is basically a function that operates on two values of the same type `T` and returns another value of `T`. The requirement for a Monoid is that this operation to be _associative_, that is:
+
+```java
+// assuming m is an instance of a Monoid, following statement evaluates to true
+m.operate(value1, m.operate(value2, value3) == m.operate(m.operate(value1, value2), value3);
+```
+
+An example of associativity in simple mathematics is:
+
+```
+1 + (2 + 3) = (1 + 2) + 3
+```
+
+Integer addition and multiplication are associative, however integer subtraction and division are not, for example:
+
+```
+1 - (2 - 3) ≠ (1 - 2) - 3
+```
+
+**Identity** is a value of type `T` such that:
+
+```java
+// assuming m is an instance of a Monoid, following statements evaluates to true
+m.operate(value, identity) == value;
+m.operate(identity, value) == value;
+```
+
+In integer addition, `0` is the identity, as `1` is for integer multiplication:
+
+```
+2 + 0 = 2
+2 x 1 = 2
+```
 
 ### Fold and Reduce
 
@@ -115,9 +162,8 @@ There are a lot of noises when writing functional code in Java. Consider followi
 fun functionalSumFold(numbers: List<Int>) = numbers.fold(0) { sum, number -> sum + number }
 ```
 
-
-
 ### Fold Left and Right
 
 
 ### Fold and Reduce in Different Languages
+
