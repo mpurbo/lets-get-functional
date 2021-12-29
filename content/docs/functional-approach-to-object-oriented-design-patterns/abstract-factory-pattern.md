@@ -2,10 +2,11 @@
 title: "Abstract Factory Pattern"
 date: 2021-12-16T22:02:43+09:00
 draft: true
+weight: 10
 ---
 ## Abstract Factory Pattern
 
-The abstract factory is one of the most widely used pattern, almost certain to be found in any large object-oriented projects. As the name suggests, it gives us a "factory" that lets us create a system of related objects in their abstract form. Here's an illustration on how it works:
+The Abstract Factory is one of the most widely used pattern, almost certain to be found in any large object-oriented projects. As the name suggests, it gives us a "factory" that lets us create a system of related objects in their abstract form. Here's an illustration on how it works:
 
 [insert illustration-1]
 
@@ -25,7 +26,7 @@ This really is a very powerful abstraction that gets used and, unfortunately, ab
 
 ### Example Problem: Ecosystem With Animals
 
-To see how the abstract factory pattern being applied to model a relatively simple problem, let's devise an example involving animals:
+To see how the Abstract Factory pattern being applied to model a relatively simple problem, let's devise an example involving animals:
 
 [insert illustration-2]
 
@@ -489,7 +490,47 @@ public class FishFactory {
 
 The idea of constructing "Abstract Factory" in a functional way doesn't make much sense. However, we can still ask: is there a way to approach the same problem as it is solved by "Abstract Factory" pattern but purely as a functional composition.
 
-To answer that question, we first need to identify what is it exactly the problem, and rephrase it in such a way that is easier to approach from functional perspective. Unlike with object-oriented reasoning, we usually identify what "actors" or "objects" are involved in the problem to be solved. With functional reasoning, we start with identifying what is it that the whole system is computing. What kind of output we want from what kind of input we can give?  
+To answer that question, we first need to identify what exactly the problem is, and rephrase it in such a way that is easier to approach from functional perspective. Unlike with object-oriented reasoning, we usually identify what "actors" or "objects" are involved in the problem to be solved. With functional reasoning, we start with identifying what is it that the whole system is computing. What kind of output we want from what kind of input can we give?
+
+We could examine the object-oriented version to see how the input turns into output and what kind of computation might be involved:
+
+```java
+public class EcosystemTest {
+
+    // ....    
+    
+    @Test
+    void testImperative() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        
+        // 1st input: 3 animals, each with different way of "moving" and different initial position
+        ImperativeEcosystemJava ecosystem = new ImperativeEcosystemJava(List.of(
+                BirdFactory.create(birdInitialPosition),
+                FishFactory.create(fishInitialPosition),
+                DogFactory.create(dogInitialPosition)
+        ));
+        // 2nd input: position of a disaster, from where the 3 animals will have to flee
+        ecosystem.onNaturalDisaster(disasterLocation);
+        
+        // output: animals at safe positions
+        List<Animal> animals = ecosystem.getAnimals();
+        
+        // ....
+    }
+}
+```
+
+As can be seen from the above snippet, the 2nd input (disaster location) and the output (animals at safe positions are straightforward). The 1st input, however, needs some more examination. And this 1st input is essentially the heart of Abstract Factory pattern. Things to observe about the 1st input:
+
+1. The animal factories connects the animal data (position) and some logic related to animal's movement, namely:
+   1. The unit movement logic. 
+   2. Logic for checking whether the animal is already at a safe distance.
+   3. Logic related to how the medium in which the animal moves may influence the movement.
+2. Different animal have different logic. However, animals of the same type will share the same logic. 
+3. All of these logics are initiated by animal's initial position. However, even animals of the same type may have different initial position.  
+
+From this observation, we can say that the purpose of this system is to compute final safe position of various kind of animals. The input to this computation is the initial position of the animals, and the _various operations specific to each animal_ as shown in the following illustration:
+
+
 
 
 ### Commentary
