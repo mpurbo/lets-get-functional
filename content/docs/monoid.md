@@ -162,8 +162,5 @@ There are a lot of noises when writing functional code in Java. Consider followi
 fun functionalSumFold(numbers: List<Int>) = numbers.fold(0) { sum, number -> sum + number }
 ```
 
-### Fold Left and Right
-
-
 ### Fold and Reduce in Different Languages
 
