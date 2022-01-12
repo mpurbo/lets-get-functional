@@ -55,7 +55,7 @@ public static <T> T reduce(T identity, BinaryOperator<T> operation, Collection<T
     return reduced;
 }
 ```
-This generic function is basically showing what we can do with a Monoid structure. We can operate it with another Monoid of the same type, to produce another Monoid of the same type. `Integer` _addition_ is a Monoid. `String` and `List` are some examples of another Monoidal structure. 
+This generic function is basically showing what we can do with a Monoidal structure. We can operate it with another Monoid of the same type, to produce another Monoid of the same type. `Integer` _addition_ is a Monoid. `String` and `List` are some examples of another Monoidal structure. 
 
 As a Monoid, the imperative code for summing all `Integer` numbers can be expressed as follows:
 
