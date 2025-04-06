@@ -7,6 +7,8 @@ weight: 40
 
 ## Monoid
 
+### Introduction
+
 A **Monoid** is a structure or pattern that appears in many programming tasks, often without us realizing it. We write code that uses Monoids all the time—even if we don’t call them that.
 Take this simple example of summing all the numbers in a list:
 
@@ -100,7 +102,9 @@ With this approach, the boilerplate is gone, and what's left is the essence of t
 
 This is one of the key ideas in functional programming: **separating the structure of computation from the specific operation**—and Monoids are one of the most elegant abstractions for doing just that.
 
-### More Practical Example: [LeetCode 896. Monotonic Array](https://leetcode.com/problems/monotonic-array/description/)
+### Practical Example: Monotonic Array
+
+Let’s now look at how we can apply the same Monoid structure to solve a real-world problem—in this case, [LeetCode 896: Monotonic Array](https://leetcode.com/problems/monotonic-array/description/).
 
 #### Problem Statement
 
@@ -121,8 +125,6 @@ Output: false
 ```
 
 #### Kotlin Solution
-
-Let’s now look at how we can apply the same Monoid structure to solve a real-world problem—in this case, [LeetCode 896: Monotonic Array](https://leetcode.com/problems/monotonic-array/description/).
 
 Here’s the Kotlin solution:
 
@@ -220,5 +222,7 @@ monoid.operate(monoid.identity(), a) == a;
 For example:
 - In integer addition, the identity is `0`, because `a + 0 == a`.
 - In integer multiplication, the identity is `1`, because `a * 1 == a`.
+
+### Postscript
 
 The term _Monoid_ comes from **category theory**, a branch of mathematics that explores structure and composition at a very abstract level. While we've approached Monoids from a practical, programming-oriented perspective, it's worth noting that this idea has deep mathematical roots. Category theory offers a powerful and unifying way to think about patterns that show up across many areas of programming. If you're curious to explore further, you’ll find that Monoid is just the beginning of a much broader and beautifully consistent world. But for now, it's enough to know that this simple pattern—an identity and a way to combine values—is part of something much bigger.
